@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WELCOME TO TCM</title>
+    <style>
+        :root {
+            --bg-color: #0f0c1b;
+            --container-bg: #161224;
+            --accent-purple: #9b5de5;
+            --text-main: #f4f4f9;
+            --text-muted: #a0a0b8;
+            --border-color: #2a2447;
+            --tab-hover: #f15bb5;
+            --neon-green: #00f5d4;
+            --neon-yellow: #fee440;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+            background-size: 550px 550px, 250px 250px;
+            margin: 0;
+            padding: 40px 20px;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 750px;
+            background: var(--container-bg);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 25px;
+            gap: 5px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 12px 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+
+        .tab-button:hover {
+            color: var(--tab-hover);
+        }
+
+        .tab-button.active {
+            color: var(--accent-purple);
+            border-bottom: 3px solid var(--accent-purple);
+            text-shadow: 0 0 10px rgba(155, 93, 229, 0.4);
+        }
+
+        .tab-content {
+            display: none;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: tabFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .tab-content h3 {
+            color: var(--tab-hover);
+            margin-top: 0;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            border-left: 3px solid var(--tab-hover);
+            padding-left: 10px;
+        }
+
+        .tab-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0 0 14px 0;
+            color: #e2e2ec;
+            position: relative;
+            padding-left: 22px;
+        }
+
+        .tab-content p::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--accent-purple);
+            font-size: 12px;
+            top: 1px;
+        }
+
+        .tab-content p.no-bullet::before {
+            display: none;
+        }
+.tab-content p.no-bullet {
+            padding-left: 0;
+        }
+
+        .component-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .component-list {
+                grid-template-columns: 1fr;
+            }
+            .tabs {
+                justify-content: flex-start;
+            }
+        }
+
+        .component-item {
+            background: rgba(155, 93, 229, 0.05);
+            border: 1px solid rgba(155, 93, 229, 0.15);
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .component-item span {
+            color: var(--neon-green);
+            font-weight: bold;
+        }
+
+        @keyframes tabFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes textGlow {
+            from {
+                text-shadow: 0 0 10px rgba(155, 93, 229, 0.4), 0 0 20px rgba(155, 93, 229, 0.2);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(241, 91, 181, 0.8), 0 0 30px rgba(155, 93, 229, 0.6);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>WELCOME TO TCM</h1>
+    
+    <div class="tabs">
+        <button class="tab-button active" onclick="openTab(event, 'tab-WHAT-IS-TCM')">What Is TCM</button>
+        <button class="tab-button" onclick="openTab(event, 'tab-HOW-TO-USE-TCM')">How To Use</button>
+        <button class="tab-button" onclick="openTab(event, 'tab-WHAT-NOT-TO-PUT')">What Not To Put</button>
+        <button class="tab-button" onclick="openTab(event, 'tab-HOW-TO-MIX-SOIL')">How To Mix Soil</button>
+    </div>
+
+    <!-- TAB 1: WHAT IS TCM -->
+    <div id="tab-WHAT-IS-TCM" class="tab-content active">
+        <p class="no-bullet"><strong>The Composting Machine (TCM)</strong> is an automated, smart micro-reactor designed to shrink household organic waste by up to 80% and convert it into rich pre-compost in just 3 to 5 days.</p>
+        <p class="no-bullet">Traditional backyard composting is slow, messy, and can take up to three months to produce results. TCM revolutionizes this process for modern homes by combining mechanical shredding, thermal climate control, and smart sensor automation inside a compact, countertop-friendly design.</p>
+        
+        <h3 style="margin-top: 25px;">System Material Suite (12 Core Elements)</h3>
+        <div class="component-list">
+            <div class="component-item"><span>01.</span> MQ-135 Gas Sensor</div>
+            <div class="component-item"><span>02.</span> ESP-32 Dev Board</div>
+            <div class="component-item"><span>03.</span> DHT22 Temp/Humidity</div>
+            <div class="component-item"><span>04.</span> Yellow LCD Screen</div>
+            <div class="component-item"><span>05.</span> DC Drive Motor</div>
+            <div class="component-item"><span>06.</span> Blender Blade Assembly</div>
+            <div class="component-item"><span>07.</span> Wires (ខ្សែ តភ្លើង)</div>
+            <div class="component-item"><span>08.</span> Power Supply (ដុំភ្លើង)</div>
+            <div class="component-item"><span>09.</span> Step-Down Converter</div>
+            <div class="component-item"><span>10.</span> PTC Heater Fan</div>
+            <div class="component-item"><span>11.</span> Wood Framing Board</div>
+            <div class="component-item"><span>12.</span> Internal Steel Plate</div>
+        </div>
+    </div>
+<div id="tab-HOW-TO-USE-TCM" class="tab-content">
+        <p>FOR WET & DRY ORGANIC WASTE</p>
+        <p>Phase 1: Preparation (Before Powering On)</p>
+        <p>•  Step 1: Prep the Waste Mix. Weigh out 500g of wet organic waste (chopped fruit peels/scraps) and 500g of dry carbon matter (shredded cardboard or dry leaves) to make your 1kg total.
+</p>
+        <P>•  Step 2: Activate the EM. Mix your EM substance with a cup of warm water and a spoonful of sugar. Let it wake up for 10 minutes.</P>
+        <p>•  Step 3: Bottom Layer (Dry). Drop roughly 150g of your dry carbon matter directly over the blades inside the mesh basket to create a low-friction buffer zone.</p>
+        <P>•  Step 4: Middle Layer (Waste & EM). Pour the rest of your 1kg organic waste mix into the basket and pour the activated EM liquid evenly over it.</P>
+        <P>•  Step 5: Top Layer (Dirt). Sprinkle 100g to 200g of dry dirt on top of the pile to introduce local soil microbes and act as an odor filter.</P>
+      <P>Phase 2: Execution (The 3-Day Cycle)</P>
+      <P>•  Step 6: Initial Shred (Day 1). Close the lid, turn on the main power switches, and run the motor and blender blades for 1 to 2 minutes to chop and blend everything together.</P>
+      <P>•  Step 7: Climate Stabilization. Turn on the PTC heater fan. Ensure your ESP-32 code reads the DHT22 sensor and regulates the fan to lock the internal temperature between 50°C and 55°C.</p>
+      <P>•  Step 8: Oxygen Refueling (Every 12 Hours). Briefly run the motor for just 5 to 10 seconds every 12 hours to fluff up the compressing wet mass and inject fresh oxygen.</P>
+      <P>•  Step 9: Monitor Gas & Display. Keep an eye on the Yellow LCD display and the MQ-135 sensor readings to track air quality metrics and ensure the heating loop is running smoothly.</P>
+  <P>Phase 3: Extraction (Hour 72)</P>
+  <P>•  Step 10: Harvest the Pre-Compost. At the end of Day 3, turn off the system. Open the chamber door to retrieve a dark, earthy, volume-reduced organic fertilizer that is fully stabilized and ready for plants.</P>
+  
+  <P>FOR DRY ORGANIC WASTE</P>
+  <p>•  Step 1: Pre-Chop the Pieces. Cut or tear large cardboard or dry leaves down to small 2–3 cm pieces before dropping them into the mesh basket. This protects your blender blades from high-torque mechanical strain and stops the motor from stalling.</P>
+  <P>•  Step 2: Wake Up the EM. Mix 1 cup of warm water, 1 capful of your EM substance, and 1 spoonful of sugar. Let it sit for 10 minutes so the sugar can jumpstart the microbes.</P>
+  <p>•  Step 3: The "Damp Sponge" Rule. Pour the sweet EM liquid completely over the dry waste. The material must feel thoroughly wet and damp to the touch, but not soaking in a deep puddle at the bottom.</p>
+  <p>•  Step 4: Shred for Longer. Close the lid and run the motor blades for 3 to 4 minutes initially (instead of the usual 1 minute). Dry fiber is tough, and blending it longer creates a high surface area for rapid microbial attachment.</p>
+  <p>•  Step 5: Watch the Yellow LCD. Keep the PTC heater fan running, but monitor the DHT22 humidity reading. If the screen shows the humidity dropping below 35% on Day 2 or 3, sprinkle half a cup of water inside to keep the bacteria from drying out and going dormant.</p>
+  <p>FOR WET ORGANIC WASTE</p>
+  <p>Because wet waste turns into a heavy, sticky paste, we have to adjust the method to protect the motor from jamming. This will increase the composting time slightly from 3 days to 5 days (120 hours), which is still incredibly fast!</p>
+  <p>•  Step 1: Drain Excess Liquid First. Do not dump pools of liquid into the basket. Tell the user to strain or shake off excess water from the food scraps before loading them.</p>
+  <p>•  Step 2: Add Double Dirt/Soil (The Structural Buffer). Since there is no dry cardboard to absorb moisture, sprinkle 2 full cups of dry dirt directly into the wet waste mix. The dirt acts as a physical barrier that prevents the wet scraps from turning into a single, sticky, motor-stalling mud block.</p>
+<p>•  Step 3: Use the "Short Pulse" Shred Method. Do not run the motor for 2 minutes straight. Instead, press the motor switch on and off in 5-second bursts (pulses) for about 1 minute. This chops the wet food safely without allowing a thick slurry to build up high-friction drag around the blender blades.</p>
+  <p>•  Step 4: Maximize the PTC Heater Fan. Keep the PTC heater fan running continuously via the ESP-32. Wet waste requires maximum thermal energy to evaporate the excess moisture trapping the air gaps.</p>
+  <p>•  Step 5: The 5-Day Maturity Check. Because wet cells take longer to dry out and stabilize, let the machine incubate for 5 days. You will know it is ready when the DHT22 humidity drops below 50% and the wet mass turns into a rich, dark, earthy crumble.</p>
+    </div>
+
+    <div id="tab-WHAT-NOT-TO-PUT" class="tab-content">
+        <p>1. Absolute Mechanical Hazards (Will Break the Blades or Stall the Motor)</p>
+        <p>•  Animal Bones & Seafood Shells: Large chicken, beef, or pork bones, as well as thick clam/oyster shells, will instantly chip or shatter the blender blades.</p>
+        <p>•  Fruit Pits & Hard Seeds: Large, dense seeds like mango pits, avocado pits, or peach stones act like rocks inside the mesh basket and will jam the rotation immediately.</p>
+        <p>•  Fibrous Strings & Husks: Whole corn husks, thick lemongrass stalks, or tough pineapple tops contain long, rope-like fibers. These will wrap around the spinning motor shaft, causing high friction that can overheat your wiring .</p>
+        <p>•  Non-Organic Materials: Plastic wrappers, metal twist-ties, rubber bands, or fruit stickers. These will dull the blades and contaminate your final compost with microplastics.</p>
+        <p>2. Biological Hazards (Will Kill the EM Microbes or Cause Terrible Odors)</p>
+        <p>•  Heavy Dairy & Cooking Oils: Large amounts of cheese, butter, milk, or cooking grease. While organic, fats coat the waste particles in oil, blocking oxygen. This kills your EM bacteria and turns the chamber into a sour, foul-smelling mess.</p>
+      <p>•  Excessive Raw Meat or Feces: Small scraps are fine, but large chunks of raw meat or pet waste attract harmful pathogens, override your MQ-135 air quality thresholds, and cause severe odors that the dirt filtration layer cannot mask.</p>
+      <p>•  Chemically Treated Wood or Paper: Colored glossy magazines, receipts (thermal paper), or pressure-treated wood shavings. The chemicals and heavy metals will kill off your soil microbes and ruin the fertilizer quality.</p>
+    </div>
+<div id="tab-HOW-TO-MIX-SOIL" class="tab-content">
+      <p>1. Leafy Greens & Vegetables (The Heavy Feeders)</P>
+  <P>•  Examples: Lettuce, cabbage, tomatoes, chili peppers, and basil.</P>
+  <P>•  The Mix: Use a 1:2 Ratio (1 part raw compost + 2 parts dirt).</P>
+<p>•  Why: Vegetables require large amounts of nitrogen and nutrients to grow leaves and produce fruit. Because they consume nutrients rapidly, they can handle a slightly richer, more concentrated soil blend.</p>
+  <p>2 Indoor Potted Plants & Flowers (The Sensitive Roots)</P>
+<P>•  Examples: Peace lilies, monsteras, orchids, marigolds, and roses.</P>
+<P>•  The Mix: Use a 1:4 Ratio (1 part raw compost + 4 parts dirt).</P>
+<P>•  Why: Potted plants have confined root systems with nowhere to hide if the soil is too strong. Diluting it further ensures delicate roots don't experience "nutrient burn."</p>
+<p>3. Cacti & Succulents (The Low-Nutrient Plants)</P>
+<P>•  Examples: Aloe vera, desert cacti, and jade plants.</P>
+<P>•  The Mix: Use a 1:5 Ratio mixed with sand (1 part raw compost + 4 parts dirt + 1 part coarse sand).</P>
+<P>•  Why: Succulents thrive in poor, sandy, highly draining soils. Giving them too much rich compost will actually make them weak and watery. The sand keeps the texture loose and gravelly.</p>
+        <p>fOR BIG TREE</p>
+<P>1.  Find the Drip Line: Walk out to the edge of the tree where the furthest leaves stick out. The tips of the roots underground are located right below the furthest branches (this is called the drip line). Never dig or pour compost right against the main tree trunk.</P>
+<P>2.  Dig a Shallow Ring: Dig a small, circular trench (about 5 to 10 cm deep) all the way around the tree along that drip line.</P>
+<P>3.  Pour the Raw Compost: Pour the raw 3-day pre-compost directly into that shallow trench. </P>
+<P>4.  Bury and Water: Cover the compost back up with the dirt you dug out and water it thoroughly</P>
+    </div>
+</div>
+
+<script>
+    function openTab(evt, tabId) {
+        const contents = document.querySelectorAll('.tab-content');
+        contents.forEach(content => content.classList.remove('active'));
+
+        const buttons = document.querySelectorAll('.tab-button');
+        buttons.forEach(button => button.classList.remove('active'));
+
+        const targetTab = document.getElementById(tabId);
+        if (targetTab) {
+            targetTab.classList.add('active');
+        }
+        evt.currentTarget.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
